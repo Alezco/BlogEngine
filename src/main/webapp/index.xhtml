@@ -9,7 +9,12 @@
 <f:view>
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
-        <a href="login.xhtml">Login</a>
-        <a href="register.xhtml">Register</a>
+    <h:form rendered="${!userController.isLogged()}">
+        <a href="login.xhtml">Connexion</a>
+    </h:form>
+    <h:form rendered="${userController.isLogged()}">
+        <p:commandButton action="${userController.logout()}">Déconnexion</p:commandButton>
+    </h:form>
+    <a href="register.xhtml">Inscription</a>
 </f:view>
 </html>

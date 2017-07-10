@@ -9,12 +9,17 @@
 <h1>Inscription</h1>
     <f:view>
         <h:form id="register">
-            <p:inputText binding="${email}" placeholder="Email"/>
-            <p:inputText binding="${username}" placeholder="Username"/>
-            <p:inputText binding="${password}" placeholder="Password"/>
-            <p:commandButton action="${user.signUp(email.value, username.value, password.value)}" value="Inscription"/>
+            <p:inputText binding="${email}" placeholder="Email">
+                <f:validateLength minimum="10" />
+            </p:inputText>
+            <p:inputText binding="${username}" placeholder="Username">
+                <f:validateLength minimum="10" />
+            </p:inputText>
+            <p:password binding="${password}" placeholder="Password">
+                <f:validateLength minimum="6" />
+            </p:password>
+            <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Inscription"/>
         </h:form>
-
     </f:view>
 <p:link href="index.xhtml">Retour au menu principal</p:link>
 </html>
