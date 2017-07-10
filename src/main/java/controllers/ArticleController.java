@@ -1,14 +1,25 @@
 package controllers;
 
+import models.Article;
+import services.Services;
+
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 
 @RequestScoped
-@Named("article")
+@Named("articleController")
 public class ArticleController {
-    public void listArticles() {
-        System.out.println("================");
-        System.out.println("LOL");
-        System.out.println("================");
+    @Inject
+    private Services services;
+
+    public ArrayList<Article> listArticles() {
+        return services.getList(Article.class);
+    }
+
+    public void addArticle(String title, String content) {
+        Article article = new Article(title, content);
+        services.create(article);
     }
 }
