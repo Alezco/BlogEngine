@@ -20,6 +20,9 @@ public class Blog {
     @Column
     private Timestamp creationDate;
 
+    @Column
+    private Boolean archived;
+
     @ManyToOne
     private User owner;
 

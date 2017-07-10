@@ -23,6 +23,9 @@ public class Article {
     @Column
     private Timestamp creationDate;
 
+    @Column
+    private Boolean archived;
+
     @ManyToOne
     private Blog blog;
 
