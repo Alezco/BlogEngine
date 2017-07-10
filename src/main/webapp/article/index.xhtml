@@ -7,8 +7,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head/>
 <ui:include src="../menu.xhtml"/>
-<h1>${blogController.getCurrent().name}</h1>
-<p:button outcome="create.xhtml" value="Create an article"/>
+<h1>Blog : ${blogController.getCurrent().name}</h1>
+<p:button outcome="create.xhtml" value="Create an article"
+          rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
 <br/><br/>
 <h:form>
     <p:dataScroller value="#{articleController.listActiveArticlesByBlogId(blogController.getCurrent().id)}" var="item" chunkSize="10">
