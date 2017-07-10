@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Blog {
     @ManyToOne
     private User owner;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog")
     private List<Article> articles;
 }
