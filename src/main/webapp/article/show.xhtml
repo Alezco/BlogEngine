@@ -3,13 +3,15 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head/>
 <f:view>
     <h1>${articleController.getCurrentArticle().title}</h1>
     <p>${articleController.getCurrentArticle().creationDate}</p>
     <br/>
     <p>${articleController.getCurrentArticle().content}</p>
+    <p:link href="index.xhtml">Back to articles</p:link>
 </f:view>
 </html>
