@@ -17,14 +17,11 @@ import java.io.Serializable;
 @SessionScoped
 @Named("userController")
 public class UserController implements Serializable {
-
     private @Inject Services services;
     private @Inject UserService userService;
-
     FacesContext context = FacesContext.getCurrentInstance();
     ExternalContext externalContext = context.getExternalContext();
     HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-
     private User currentUser;
 
     public void register(String email, String username, String password) throws IOException {

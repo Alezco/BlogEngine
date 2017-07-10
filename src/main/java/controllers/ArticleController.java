@@ -16,7 +16,6 @@ import java.util.ArrayList;
 @SessionScoped
 @Named("articleController")
 public class ArticleController implements Serializable {
-
     @Inject private Services services;
     @Inject private BlogService blogService;
     private Article currentArticle;
@@ -60,10 +59,7 @@ public class ArticleController implements Serializable {
     public void archive(Article article) throws IOException {
         article.setArchived(true);
         services.update(article);
-
-        System.out.println("Archiving " + article);
-
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        redirectTo("index.xhtml");
     }
 
     public int getAuthorId(Article article) {

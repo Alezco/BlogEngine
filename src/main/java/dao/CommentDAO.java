@@ -9,9 +9,6 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Lorris on 10/07/2017.
- */
 @SessionScoped
 public class CommentDAO implements Serializable {
     @PersistenceContext(unitName = "BEPersistenceName")

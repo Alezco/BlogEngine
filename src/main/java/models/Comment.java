@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 @Data
 @Entity
@@ -32,6 +31,5 @@ public class Comment {
         this.article = article;
     }
 
-    public Comment() {
-    }
+    public Comment() {}
 }

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class BlogController implements Serializable {
     @Inject private Services services;
     @Inject private BlogService blogService;
-
     private Blog current;
 
     public Blog getCurrent() {
@@ -38,30 +37,32 @@ public class BlogController implements Serializable {
         return blogService.getActiveBlogs();
     }
 
-    public void add(String name, User user) throws IOException {
+    public void add(String name, User user) {
         Blog blog = new Blog();
         blog.setName(name);
         blog.setArchived(false);
         blog.setCreationDate(new Timestamp(System.currentTimeMillis()));
         blog.setOwner(user);
-
         services.create(blog);
-
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        redirectTo("index.xhtml");
     }
 
-    public void show(Integer id) throws IOException {
+    public void show(Integer id) {
         current = (Blog)services.getById(Blog.class, id);
-
-        FacesContext.getCurrentInstance().getExternalContext().redirect("article/index.xhtml");
+        redirectTo("article/index.xhtml");
     }
 
-    public void archive(Blog blog) throws IOException {
+    public void archive(Blog blog) {
         blog.setArchived(true);
         services.update(blog);
+        redirectTo("index.xhtml");
+    }
 
-        System.out.println("Archiving " + blog);
-
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    private void redirectTo(String page) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(page);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
