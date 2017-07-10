@@ -29,4 +29,14 @@ public class Blog {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog")
     private List<Article> articles;
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", creationDate=" + creationDate +
+                ", archived=" + archived +
+                '}';
+    }
 }
