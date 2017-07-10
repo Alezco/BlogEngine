@@ -35,8 +35,7 @@ public class BlogController implements Serializable {
         blog.setName(name);
         blog.setArchived(false);
         blog.setCreationDate(new Timestamp(System.currentTimeMillis()));
-        //blog.setOwner();
-        System.out.println(name);
+        blog.setOwner(new UserController().getCurrentUser());
 
         services.create(blog);
     }
