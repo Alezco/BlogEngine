@@ -28,6 +28,7 @@
             </p:outputPanel>
         </h:panelGrid>
     </p:dataScroller>
+    <br/>
     <h:form rendered="${userController.isLogged()}">
         <p:inputTextarea binding="${content}" placeholder="Write a comment ...">
             <f:validateLength minimum="1" />

@@ -14,12 +14,8 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Created by Lorris on 10/07/2017.
- */
 @SessionScoped
 @Named("commentController")
 public class CommentController implements Serializable {
@@ -42,7 +38,7 @@ public class CommentController implements Serializable {
                         article
                 )
         );
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("show.xhtml");
     }
 
     public ArrayList<Comment> list(Article article) throws IOException {

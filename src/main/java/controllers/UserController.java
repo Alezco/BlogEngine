@@ -36,7 +36,7 @@ public class UserController implements Serializable {
         User user = userService.getUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            redirectTo("index.xhtml");
+            redirectTo("/index.xhtml");
         }
         else {
             redirectTo("/user/login.xhtml");
