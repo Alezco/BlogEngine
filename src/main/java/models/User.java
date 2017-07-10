@@ -14,13 +14,13 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @Column
     private String password;
 
-    @Column
+    @Column(unique = true)
     private String username;
 
     @JsonIgnore
@@ -30,6 +30,15 @@ public class User
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Comment> comments;
+
+    public User(final String email, final String username, final String password) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     @Override
     public String toString() {

@@ -10,6 +10,13 @@
 <f:view>
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
+    <h:form rendered="${!userController.isLogged()}">
+        <a href="login.xhtml">Connexion</a>
+    </h:form>
+    <h:form rendered="${userController.isLogged()}">
+        <p:commandButton action="${userController.logout()}">Déconnexion</p:commandButton>
+    </h:form>
+    <a href="register.xhtml">Inscription</a>
     <p:button outcome="create-article.xhtml" value="Create an article"/>
     <h:form>
         <p:dataScroller value="#{articleController.listArticles()}" var="item" chunkSize="10">
@@ -29,7 +36,5 @@
             </h:panelGrid>
         </p:dataScroller>
     </h:form>
-    <p:button outcome="login.xhtml" value="Login"/>
-    <p:button outcome="register.xhtml" value="Register"/>
 </f:view>
 </html>

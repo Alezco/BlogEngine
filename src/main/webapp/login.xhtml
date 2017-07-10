@@ -6,13 +6,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h1>Register</h1>
+<h1>Connexion</h1>
 <f:view>
     <h:form id="register">
-        <p:inputText binding="${email}" placeholder="Email"/>
-        <p:inputText binding="${password}" placeholder="Password"/>
+        <p:inputText binding="${email}" placeholder="Email">
+            <f:validateLength minimum="10" />
+        </p:inputText>
+        <p:password binding="${password}" placeholder="Password">
+            <f:validateLength minimum="6" />
+        </p:password>
+        <p:commandButton action="${userController.login(email.value, password.value)}" value="Connexion"/>
     </h:form>
-
 </f:view>
 <p:link href="index.xhtml">Back to index</p:link>
 </html>
