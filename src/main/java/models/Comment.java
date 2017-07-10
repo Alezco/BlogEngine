@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -13,8 +13,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private String username;
+    @Column(columnDefinition="VARCHAR(500)")
+    private String content;
 
     @Column
     private Timestamp creationDate;
@@ -24,4 +24,14 @@ public class Comment {
 
     @ManyToOne
     private Article article;
+
+    public Comment(String content, User user, Article article) {
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+        this.content = content;
+        this.author = user;
+        this.article = article;
+    }
+
+    public Comment() {
+    }
 }

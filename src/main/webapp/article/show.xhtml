@@ -11,5 +11,25 @@
     <p>${articleController.getCurrentArticle().creationDate}</p>
     <br/>
     <p>${articleController.getCurrentArticle().content}</p>
+    <p:dataScroller value="#{commentController.list()}" var="item" chunkSize="10">
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Author:" />
+                    <h:outputText value="#{item.author.getUsername()}" style="font-weight: bold"/>
+                    <h:outputText value="Content:" />
+                    <h:outputText value="#{item.content}" />
+                    <br/><br/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+    <h:form rendered="${userController.isLogged()}">
+        <p:inputTextarea binding="${content}" placeholder="Write a comment ...">
+            <f:validateLength minimum="1" />
+        </p:inputTextarea>
+        <br/>
+        <p:commandButton action="${commentController.create(content.value)}" value="Send comment"/>
+    </h:form>
 </f:view>
 </html>
