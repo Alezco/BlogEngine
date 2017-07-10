@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @SessionScoped
 @Named("articleController")
 public class ArticleController implements Serializable {
+
     @Inject private Services services;
     @Inject private BlogService blogService;
     private Article currentArticle;
@@ -27,7 +28,7 @@ public class ArticleController implements Serializable {
     public ArrayList<Article> listArticles() {
         return services.getList(Article.class);
     }
-
+  
     public ArrayList<Article> listActiveArticlesByBlogId(Integer id) {
         return blogService.getActiveArticlesByBlogId(id);
     }
@@ -62,5 +63,28 @@ public class ArticleController implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+  
+    public void edit(Article article) {
+        this.currentArticle = article;
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("edit.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateArticle(String title, String content) {
+        currentArticle.setTitle(title);
+        currentArticle.setContent(content);
+        services.update(currentArticle);
+    }
+
+    public ArrayList<Article> listActiveArticlesByBlogId(Integer id) {
+        return blogService.getActiveArticlesByBlogId(id);
+    }
+
+    public Article getCurrentArticle() {
+        return currentArticle;
     }
 }

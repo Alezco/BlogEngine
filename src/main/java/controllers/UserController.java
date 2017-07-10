@@ -17,6 +17,7 @@ import java.io.Serializable;
 @SessionScoped
 @Named("userController")
 public class UserController implements Serializable {
+
     private @Inject Services services;
     private @Inject UserService userService;
 
@@ -26,7 +27,7 @@ public class UserController implements Serializable {
 
     private User currentUser;
 
-    public void register(String email, String username, String password) {
+    public void register(String email, String username, String password) throws IOException {
         services.create(new User(email, username, password));
         redirectTo("/user/login.xhtml");
     }
