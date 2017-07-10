@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.BlogDAO;
 import models.Blog;
 import services.Services;
 
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 @Named("blogController")
 public class BlogController implements Serializable {
     @Inject private Services services;
+    @Inject private BlogDAO blogDAO;
+
     private Blog current;
 
     public Blog getCurrent() {
@@ -28,6 +31,10 @@ public class BlogController implements Serializable {
 
     public ArrayList<Blog> list() {
         return services.getList(Blog.class);
+    }
+
+    public ArrayList<Blog> activeList() {
+        return blogDAO.getActiveBlogs();
     }
 
     public void add(String name) {
@@ -43,6 +50,16 @@ public class BlogController implements Serializable {
     public void show(Integer id) throws IOException {
         current = (Blog)services.getById(Blog.class, id);
 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("show.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("blog/show.xhtml");
+    }
+
+    public void archive(Integer id) throws IOException {
+        Blog blog = (Blog)services.getById(Blog.class, id);
+        blog.setArchived(true);
+        services.update(blog);
+
+        System.out.println("Archiving " + blog);
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 }

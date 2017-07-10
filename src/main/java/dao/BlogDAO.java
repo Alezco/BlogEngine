@@ -1,6 +1,7 @@
 package dao;
 
 import models.Article;
+import models.Blog;
 
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
@@ -18,6 +19,19 @@ public class BlogDAO implements Serializable {
     public ArrayList<Article> getArticlesByBlogId(int id) {
         return (ArrayList<Article>) em.createQuery("SELECT a FROM Article a WHERE a.blog.id = :id")
                 .setParameter("id", id)
+                .getResultList();
+    }
+
+    @Transactional
+    public ArrayList<Article> getActiveArticlesByBlogId(int id) {
+        return (ArrayList<Article>) em.createQuery("SELECT a FROM Article a WHERE a.blog.id = :id AND a.archived = false")
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    @Transactional
+    public ArrayList<Blog> getActiveBlogs() {
+        return (ArrayList<Blog>) em.createQuery("SELECT b FROM Blog b WHERE b.archived = false")
                 .getResultList();
     }
 }
