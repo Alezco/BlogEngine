@@ -26,10 +26,18 @@ public class Article {
     @Column
     private Boolean archived;
 
+    @JsonIgnore
     @ManyToOne
     private Blog blog;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
     private List<Comment> comments;
+
+    public Article() {}
+
+    @Override
+    public String toString() {
+        return "title : " + title + " , content : " + content;
+    }
 }

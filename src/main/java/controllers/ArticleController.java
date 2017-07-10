@@ -9,14 +9,14 @@ import javax.inject.Named;
 import java.util.ArrayList;
 
 @RequestScoped
-@Named("article")
+@Named("articleController")
 public class ArticleController {
     @Inject
     private Services services;
 
     public ArrayList<Article> listArticles() {
         System.out.println("================");
-        System.out.println("LOL");
+        System.out.println(services.getList(Article.class));
         System.out.println("================");
         return services.getList(Article.class);
     }

@@ -10,7 +10,7 @@
 <f:view>
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
-        <c:forEach items="${article.listArticles()}" var="item">
+        <c:forEach items="${articleController.listArticles()}" var="item">
             <h:outputLabel value="${item.title}"/>______<h:outputLabel value="${item.content}"/>
             <br/>
         </c:forEach>
