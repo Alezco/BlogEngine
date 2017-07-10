@@ -12,16 +12,14 @@
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
     <h:form>
-        <p:dataScroller value="#{articleController.listArticles()}" var="item" chunkSize="10">
+        <p:dataScroller value="#{blogController.activeList()}" var="item" chunkSize="10">
             <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Id:" />
-                        <h:outputText value="#{item.id}" style="font-weight: bold"/>
-                        <h:outputText value="Title:" />
-                        <h:outputText value="#{item.title}" style="font-weight: bold"/>
-                        <h:outputText value="Content:" />
-                        <h:outputText value="#{item.content}" style="font-weight: bold"/>
+                        <h:outputText value="Name:" />
+                        <h:outputText value="#{item.name}" style="font-weight: bold"/>
+                        <p:commandButton action="${blogController.show(item.id)}" value="Show blog"/>
+                        <p:commandButton action="${blogController.archive(item.id)}" value="Archive"/>
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
