@@ -29,24 +29,31 @@ public class UserController implements Serializable {
 
     public void register(String email, String username, String password) throws IOException {
         services.create(new User(email, username, password));
-        FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/user/login.xhtml");
+        redirectTo("/user/login.xhtml");
     }
 
-    public void login(String email, String password) throws ServletException, IOException {
-
+    public void login(String email, String password) throws ServletException {
         User user = userService.getUserByEmail(email);
-
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/index.xhtml");
+            redirectTo("../index.xhtml");
         }
-        else
-            FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/user/login.xhtml");
+        else {
+            redirectTo("/user/login.xhtml");
+        }
     }
 
-    public void logout() throws IOException {
+    public void logout() {
         setCurrentUser(null);
-        FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/index.xhtml");
+        redirectTo("/index.xhtml");
+    }
+
+    private void redirectTo(String page) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + page);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isLogged() {
