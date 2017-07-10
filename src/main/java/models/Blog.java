@@ -13,7 +13,7 @@ import java.util.List;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    private Integer id;
 
     @Column
     private String name;

@@ -14,7 +14,7 @@
         <br/><br/>
         <p:inputTextarea binding="${content}" placeholder="Content"/>
         <br/><br/>
-        <p:commandButton action="${articleController.addArticle(title.value, content.value)}" value="Create article"/>
+        <p:commandButton action="${articleController.addArticle(title.value, content.value, blogController.getCurrent())}" value="Create article"/>
     </h:form>
 
 </f:view>
