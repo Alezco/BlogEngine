@@ -12,7 +12,7 @@
             <p:inputText binding="${email}" placeholder="Email"/>
             <p:inputText binding="${username}" placeholder="Username"/>
             <p:inputText binding="${password}" placeholder="Password"/>
-            <p:commandButton action="${user.add(email.value, username.value, password.value)}" value="Inscription"/>
+            <p:commandButton action="${user.signUp(email.value, username.value, password.value)}" value="Inscription"/>
         </h:form>
 
     </f:view>
