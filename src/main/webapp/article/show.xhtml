@@ -11,10 +11,10 @@
 
 <ui:include src="../menu.xhtml"/>
 <f:view>
-    <h1>${articleController.getCurrentArticle().title}</h1>
-    <p>${articleController.getCurrentArticle().creationDate}</p>
+    <h1><p:outputLabel value="${articleController.getCurrentArticle().title}" /></h1>
+    <p><p:outputLabel value="${articleController.getCurrentArticle().creationDate}" /></p>
     <br/>
-    <p>${articleController.getCurrentArticle().content}</p>
+    <p><p:outputLabel value="${articleController.getCurrentArticle().content}" /></p>
     <p:dataScroller value="#{commentController.list(articleController.getCurrentArticle())}" var="item" chunkSize="10">
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
             <p:outputPanel>
@@ -39,6 +39,7 @@
         <br/>
         <p:commandButton action="${commentController.create(content.value, userController.getCurrentUser(), articleController.getCurrentArticle())}" value="Send comment"/>
     </h:form>
-    <p:link href="index.xhtml">Back to articles</p:link>
+    <br/>
+    <p:button href="../index.xhtml" value="Back to articles"/>
 </f:view>
 </html>

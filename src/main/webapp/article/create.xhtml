@@ -9,7 +9,7 @@
 <h:head/>
 
 <ui:include src="../menu.xhtml"/>
-<h1>Create an article</h1>
+<h1><p:outputLabel value="Create an article" /></h1>
 <f:view>
     <h:form id="create_article">
         <p:inputText binding="${title}" placeholder="Title"/>
@@ -19,5 +19,6 @@
         <p:commandButton action="${articleController.addArticle(title.value, content.value, blogController.getCurrent())}" value="Create article"/>
     </h:form>
 </f:view>
-<p:link href="index.xhtml">Back to index</p:link>
+<br/>
+<p:button href="../index.xhtml" value="Back to index"/>
 </html>

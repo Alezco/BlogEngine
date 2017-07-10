@@ -7,7 +7,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head/>
 <ui:include src="../menu.xhtml"/>
-<h1>Blog : ${blogController.getCurrent().name}</h1>
+<h1><p:outputLabel value="Blog : ${blogController.getCurrent().name}" /></h1>
 <p:button outcome="create.xhtml" value="Create an article"
           rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
 <br/><br/>
@@ -30,5 +30,6 @@
         </h:panelGrid>
     </p:dataScroller>
 </h:form>
-<p:link href="../index.xhtml">Back to blogs</p:link>
+<br/>
+<p:button href="../index.xhtml" value="Back to blogs"/>
 </html>
