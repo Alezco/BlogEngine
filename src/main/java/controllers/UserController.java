@@ -4,21 +4,17 @@ import dao.UserDAO;
 import models.User;
 import services.Services;
 
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Serializable;
 
 @SessionScoped
 @Named("userController")
-public class UserController {
+public class UserController implements Serializable {
 
     private @Inject
     Services services;
@@ -37,10 +33,10 @@ public class UserController {
 
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            response.sendRedirect("index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }
         else {
-            response.sendRedirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         }
     }
 
