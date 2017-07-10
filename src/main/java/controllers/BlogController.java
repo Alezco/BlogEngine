@@ -38,7 +38,7 @@ public class BlogController implements Serializable {
         return blogService.getActiveBlogs();
     }
 
-    public void add(String name, User user) {
+    public void add(String name, User user) throws IOException {
         Blog blog = new Blog();
         blog.setName(name);
         blog.setArchived(false);
@@ -46,6 +46,8 @@ public class BlogController implements Serializable {
         blog.setOwner(user);
 
         services.create(blog);
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 
     public void show(Integer id) throws IOException {
@@ -54,8 +56,7 @@ public class BlogController implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("article/index.xhtml");
     }
 
-    public void archive(Integer id) throws IOException {
-        Blog blog = (Blog)services.getById(Blog.class, id);
+    public void archive(Blog blog) throws IOException {
         blog.setArchived(true);
         services.update(blog);
 

@@ -57,6 +57,15 @@ public class ArticleController implements Serializable {
         redirectTo("edit.xhtml");
     }
 
+    public void archive(Article article) throws IOException {
+        article.setArchived(true);
+        services.update(article);
+
+        System.out.println("Archiving " + article);
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    }
+
     private void redirectTo(String page) {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(page);
