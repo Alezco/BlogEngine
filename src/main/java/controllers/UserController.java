@@ -5,6 +5,7 @@ import models.User;
 import services.Services;
 
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@RequestScoped
+@SessionScoped
 @Named("userController")
 public class UserController {
 
@@ -24,27 +25,19 @@ public class UserController {
     private @Inject
     UserDAO userDAO;
 
-    private FacesContext context = FacesContext.getCurrentInstance();
-    private ExternalContext externalContext = context.getExternalContext();
-    private HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-    private HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+    private User currentUser;
 
     public void register(String email, String username, String password) {
         services.create(new User(email, username, password));
     }
 
     public void login(String email, String password) throws ServletException, IOException {
+
         User user = userDAO.getUserByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
-            Cookie cookieStored = getCookie(request);
-            if (cookieStored == null) {
-                Cookie cookie = new Cookie("email", user.getEmail());
-                cookie.setMaxAge(24*60*60);
-                response.addCookie(cookie);
-            }
-
-            response.sendRedirect("/blogengine");
+            currentUser = user;
+            response.sendRedirect("index.xhtml");
         }
         else {
             response.sendRedirect("login.xhtml");
@@ -52,29 +45,18 @@ public class UserController {
     }
 
     public void logout() throws IOException {
-        Cookie cookieStored = getCookie(request);
-        if (cookieStored != null) {
-            cookieStored.setMaxAge(0);
-            cookieStored.setValue("");
-            response.addCookie(cookieStored);
-            response.sendRedirect("");
-        }
+        setCurrentUser(null);
     }
 
     public boolean isLogged() {
-        return getCookie(request) != null;
+        return getCurrentUser() != null;
     }
 
-    private Cookie getCookie(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
+    public User getCurrentUser() {
+        return this.currentUser;
+    }
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("email")) {
-                    return cookie;
-                }
-            }
-        }
-        return null;
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 }
