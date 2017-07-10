@@ -6,9 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-/**
- * Created by Lorris on 10/07/2017.
- */
 public class UserDAO {
     @PersistenceContext(unitName = "BEPersistenceName")
     private EntityManager em;

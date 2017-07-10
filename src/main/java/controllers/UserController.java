@@ -15,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Lorris on 10/07/2017.
- */
-
 @RequestScoped
 @Named("userController")
 public class UserController {

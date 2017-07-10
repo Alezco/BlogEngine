@@ -3,16 +3,21 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:form>
-    <p:growl id="messages"/>
-
     <p:menubar>
         <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-        <p:menuitem value="Login" url="login.xhtml"/>
-        <p:menuitem value="Register" url="register.xhtml"/>
+        <p:menuitem value="Login" url="login.xhtml">
+            <h:form rendered="${!userController.isLogged()}">
+                <a href="login.xhtml">Login</a>
+            </h:form>
+        </p:menuitem>
+        <p:menuitem value="Logout" url="login.xhtml">
+            <h:form rendered="${userController.isLogged()}">
+                <p:commandButton action="${userController.logout()}" value="Logout" />
+            </h:form>
+        </p:menuitem>
+        <p:menuitem value="Register" url="register.xhtml" />
     </p:menubar>
 </h:form>
 </html>

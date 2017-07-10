@@ -3,23 +3,25 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h1>Inscription</h1>
+<h1>Register</h1>
     <f:view>
         <h:form id="register">
             <p:inputText binding="${email}" placeholder="Email">
                 <f:validateLength minimum="10" />
             </p:inputText>
+            <br/>
             <p:inputText binding="${username}" placeholder="Username">
                 <f:validateLength minimum="10" />
             </p:inputText>
+            <br/>
             <p:password binding="${password}" placeholder="Password">
                 <f:validateLength minimum="6" />
             </p:password>
+            <br/>
             <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Inscription"/>
         </h:form>
     </f:view>
-<p:link href="index.xhtml">Retour au menu principal</p:link>
+<p:link href="index.xhtml">Back to index</p:link>
 </html>

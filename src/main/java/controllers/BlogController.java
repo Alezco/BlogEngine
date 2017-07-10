@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Article;
 import models.Blog;
 import services.Services;
 
@@ -9,13 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
-/**
- * Created by Lorris on 10/07/2017.
- */
 
 @RequestScoped
 @Named("blogController")
