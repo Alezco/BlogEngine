@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 @ApplicationScoped
 public class DAO {
-    @PersistenceContext(unitName = "intrapu")
+    @PersistenceContext(unitName = "BEPersistenceName")
     private EntityManager em;
 
     public <T> ArrayList<T> getList(Class tClass) {
