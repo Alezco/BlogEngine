@@ -5,10 +5,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
+        <c:forEach items="${article.listArticles()}" var="item">
+            <h:outputLabel value="${item.title}"/>______<h:outputLabel value="${item.content}"/>
+            <br/>
+        </c:forEach>
         <a href="login.xhtml">Login</a>
         <a href="register.xhtml">Register</a>
 </f:view>
