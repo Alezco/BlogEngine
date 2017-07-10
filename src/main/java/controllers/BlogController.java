@@ -1,11 +1,14 @@
 package controllers;
 
+import models.Article;
 import models.Blog;
 import services.Services;
 
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -18,6 +21,15 @@ import java.util.ArrayList;
 @Named("blogController")
 public class BlogController {
     @Inject private Services services;
+    private Blog current;
+
+    public Blog getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Blog current) {
+        this.current = current;
+    }
 
     public ArrayList<Blog> list() {
         return services.getList(Blog.class);
@@ -32,5 +44,11 @@ public class BlogController {
         System.out.println(name);
 
         services.create(blog);
+    }
+
+    public void show(Integer id) throws IOException {
+        current = (Blog)services.getById(Blog.class, id);
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("show.xhtml");
     }
 }
