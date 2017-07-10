@@ -6,7 +6,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<div>
-    <h1>Register</h1>
-    <a href="index.xhtml">Back to index</a>
-</div>
+<h1>Inscription</h1>
+    <f:view>
+        <h:form id="register">
+            <p:inputText binding="${email}" placeholder="Email"/>
+            <p:inputText binding="${username}" placeholder="Username"/>
+            <p:inputText binding="${password}" placeholder="Password"/>
+            <p:commandButton action="${user.add(email.value, username.value, password.value)}" value="Inscription"/>
+        </h:form>
+
+    </f:view>
+<p:link href="index.xhtml">Retour au menu principal</p:link>
+</html>
