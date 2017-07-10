@@ -44,4 +44,9 @@ public class CommentController implements Serializable {
     public ArrayList<Comment> list(Article article) throws IOException {
         return commentDAO.getCommentsByArticleId(article.getId());
     }
+
+    public void delete(Comment comment) throws IOException {
+        commentDAO.deleteComment(comment);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    }
 }

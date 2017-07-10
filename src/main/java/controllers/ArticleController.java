@@ -66,6 +66,10 @@ public class ArticleController implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 
+    public int getAuthorId(Article article) {
+        return article.getBlog().getOwner().getId();
+    }
+
     private void redirectTo(String page) {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(page);

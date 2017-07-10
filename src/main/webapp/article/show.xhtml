@@ -23,6 +23,9 @@
                     <h:outputText value="#{item.author.getUsername()}" style="font-weight: bold"/>
                     <h:outputText value="Content:" />
                     <h:outputText value="#{item.content}" />
+                    <h:form rendered="${articleController.getAuthorId(articleController.getCurrentArticle()) == userController.getCurrentUser().getId()}">
+                        <p:commandButton action="${commentController.delete(item)}" value="Delete comment"/>
+                    </h:form>
                     <hr/>
                 </h:panelGrid>
             </p:outputPanel>

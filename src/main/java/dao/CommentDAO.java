@@ -23,4 +23,10 @@ public class CommentDAO implements Serializable {
                 .setParameter("id", id)
                 .getResultList();
     }
+
+    @Transactional
+    public void deleteComment(Comment comment) {
+        Comment comment1 = em.find(Comment.class, comment.getId());
+        em.remove(comment1);
+    }
 }
