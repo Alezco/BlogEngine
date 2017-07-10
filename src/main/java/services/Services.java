@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 @ApplicationScoped
 public class Services {
-    private @Inject
-    DAO dao;
+    private @Inject DAO dao;
 
     public <T> ArrayList<T> getList(Class tClass) {
         return dao.getList(tClass);
