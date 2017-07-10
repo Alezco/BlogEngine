@@ -33,10 +33,14 @@
     </p:dataScroller>
     <br/>
     <h:form rendered="${userController.isLogged()}">
-        <p:inputTextarea id="comment" binding="${content}" placeholder="Write a comment ..." required="true" requiredMessage="Please, fill wih a comment"/>
-        <h:message for="comment" style="color: red"/>
-        <br/>
-        <p:commandButton action="${commentController.create(content.value, userController.getCurrentUser(), articleController.getCurrentArticle())}" value="Send comment"/>
+        <h:panelGrid id="grid">
+            <p:inputTextarea id="comment" binding="${content}" placeholder="Write a comment ..." required="true" requiredMessage="Please, fill wih a comment">
+                <f:validateLength minimum="5"/>
+            </p:inputTextarea>
+            <p:message for="comment"/>
+            <br/>
+        </h:panelGrid>
+        <p:commandButton action="${commentController.create(content.value, userController.getCurrentUser(), articleController.getCurrentArticle())}" value="Send comment" update="grid"/>
     </h:form>
     <br/>
     <p:button href="../index.xhtml" value="Back to articles"/>

@@ -13,10 +13,14 @@
     <h1><p:outputLabel value="Welcome to BlogEngine !" /></h1>
     <br />
     <h:form rendered="${userController.isLogged()}">
-        <p:inputText id="title" binding="${name}" placeholder="Title" required="true" requiredMessage="Please, fill with a title"/>
-        <h:message for="title" style="color: red"/>
-        <br/><br/>
-        <p:commandButton action="${blogController.add(name.value, userController.getCurrentUser())}" value="Create new blog"/>
+        <h:panelGrid id="grid">
+            <p:inputText id="title" binding="${name}" placeholder="Title" required="true" requiredMessage="Please, fill with a title">
+                <f:validateLength minimum="5"/>
+            </p:inputText>
+            <p:message for="title"/>
+            <br/><br/>
+        </h:panelGrid>
+        <p:commandButton action="${blogController.add(name.value, userController.getCurrentUser())}" value="Create new blog" update="grid"/>
         <br />
         <br />
     </h:form>
