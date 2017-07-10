@@ -1,6 +1,5 @@
 package dao;
 
-import models.Article;
 import models.Comment;
 
 import javax.enterprise.context.SessionScoped;

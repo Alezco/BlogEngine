@@ -14,6 +14,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -31,22 +32,20 @@ public class CommentController implements Serializable {
     private FacesContext context = FacesContext.getCurrentInstance();
     private ExternalContext externalContext = context.getExternalContext();
     private HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-    private User currentUser = new UserController().getCurrentUser();
-    private Article currentArticle = new ArticleController().getCurrentArticle();
 
 
-    public void create(String content) throws IOException {
+    public void create(String content, User user, Article article) throws IOException {
         services.create(
                 new Comment(
                         content,
-                        currentUser,
-                        currentArticle
+                        user,
+                        article
                 )
         );
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 
-    public ArrayList<Comment> list() throws IOException {
-        return commentDAO.getCommentsByArticleId(currentArticle.getId());
+    public ArrayList<Comment> list(Article article) throws IOException {
+        return commentDAO.getCommentsByArticleId(article.getId());
     }
 }
