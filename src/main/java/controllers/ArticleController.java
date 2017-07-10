@@ -52,6 +52,10 @@ public class ArticleController implements Serializable {
         services.update(currentArticle);
     }
 
+    public ArrayList<Article> listArticlesByBlogId() {
+        return services.getList(Article.class);
+    }
+
     public Article getCurrentArticle() {
         return currentArticle;
     }
