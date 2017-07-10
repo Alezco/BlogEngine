@@ -2,9 +2,7 @@
 Blog realised with JEE
 
 #TODO
-- Redirections
-- Archived articles
 - CSS
 - User rights handling
-- Comments
+- Delete comments
 - Form errors
