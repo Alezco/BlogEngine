@@ -3,17 +3,18 @@ package controllers;
 import models.Blog;
 import services.Services;
 
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-@RequestScoped
+@SessionScoped
 @Named("blogController")
-public class BlogController {
+public class BlogController implements Serializable {
     @Inject private Services services;
     private Blog current;
 
