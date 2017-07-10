@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -12,7 +13,7 @@ import java.util.List;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    public Integer id;
 
     @Column
     private String name;
@@ -38,5 +39,15 @@ public class Blog {
                 ", creationDate=" + creationDate +
                 ", archived=" + archived +
                 '}';
+    }
+
+    public Blog() {}
+
+    public Blog(String name) {
+        this.name = name;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+        this.archived = false;
+        this.owner = new User();
+        this.articles = new ArrayList<>();
     }
 }

@@ -15,9 +15,11 @@ public class ArticleController {
     private Services services;
 
     public ArrayList<Article> listArticles() {
-        System.out.println("================");
-        System.out.println(services.getList(Article.class));
-        System.out.println("================");
         return services.getList(Article.class);
+    }
+
+    public void addArticle(String title, String content) {
+        Article article = new Article(title, content);
+        services.create(article);
     }
 }
