@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Article;
+import models.Blog;
 import services.BlogService;
 import services.Services;
 
@@ -27,8 +28,9 @@ public class ArticleController implements Serializable {
         return services.getList(Article.class);
     }
 
-    public void addArticle(String title, String content) {
+    public void addArticle(String title, String content, Blog blog) {
         Article article = new Article(title, content);
+        article.setBlog(blog);
         services.create(article);
     }
 
@@ -50,7 +52,7 @@ public class ArticleController implements Serializable {
         }
     }
 
-    public void updateArticle( String title, String content) {
+    public void updateArticle(String title, String content) {
         currentArticle.setTitle(title);
         currentArticle.setContent(content);
         services.update(currentArticle);
