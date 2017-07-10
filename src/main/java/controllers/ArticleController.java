@@ -28,13 +28,28 @@ public class ArticleController implements Serializable {
         services.create(article);
     }
 
-    public void show(Article article) {
+    public void create(Article article) {
         this.currentArticle = article;
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("show.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void edit(Article article) {
+        this.currentArticle = article;
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("edit.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateArticle( String title, String content) {
+        currentArticle.setTitle(title);
+        currentArticle.setContent(content);
+        services.update(currentArticle);
     }
 
     public Article getCurrentArticle() {
