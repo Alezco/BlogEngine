@@ -17,7 +17,6 @@ import java.io.Serializable;
 @SessionScoped
 @Named("userController")
 public class UserController implements Serializable {
-
     private @Inject Services services;
     private @Inject UserService userService;
 
@@ -33,12 +32,10 @@ public class UserController implements Serializable {
     }
 
     public void login(String email, String password) throws ServletException {
-
         User user = userService.getUserByEmail(email);
-
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            redirectTo("/index.xhtml");
+            redirectTo("../index.xhtml");
         }
         else {
             redirectTo("/user/login.xhtml");

@@ -19,9 +19,9 @@
         <p:password binding="${password}" placeholder="Password">
             <f:validateLength minimum="6" />
         </p:password>
-        <br/>
+        <br/><br/>
         <p:commandButton action="${userController.login(email.value, password.value)}" value="Connection"/>
+        <p:button href="../index.xhtml" value="Back to index" />
     </h:form>
 </f:view>
-<p:button href="../index.xhtml" value="Back to index" />
 </html>
