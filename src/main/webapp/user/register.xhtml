@@ -9,20 +9,20 @@
 
 <h1>Register</h1>
     <f:view>
-        <h:form id="register">
+        <h:form>
             <p:inputText binding="${email}" placeholder="Email">
                 <f:validateLength minimum="10" />
             </p:inputText>
             <br/>
             <p:inputText binding="${username}" placeholder="Username">
-                <f:validateLength minimum="10" />
+                <f:validateLength minimum="5" />
             </p:inputText>
             <br/>
             <p:password binding="${password}" placeholder="Password">
                 <f:validateLength minimum="6" />
             </p:password>
             <br/>
-            <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Inscription"/>
+            <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Register"/>
         </h:form>
     </f:view>
 <p:button href="../index.xhtml" value="Back to index" />

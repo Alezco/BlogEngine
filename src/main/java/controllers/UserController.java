@@ -27,8 +27,9 @@ public class UserController implements Serializable {
 
     private User currentUser;
 
-    public void register(String email, String username, String password) {
+    public void register(String email, String username, String password) throws IOException {
         services.create(new User(email, username, password));
+        FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/user/login.xhtml");
     }
 
     public void login(String email, String password) throws ServletException, IOException {
