@@ -24,6 +24,10 @@ public class User
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Blog> blogs;
 
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<Comment> comments;
+
     @Override
     public String toString() {
         return "User{" +

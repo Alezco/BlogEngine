@@ -8,20 +8,23 @@ import java.util.List;
 
 @Data
 @Entity
-public class Blog {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
-    private String name;
+    private String title;
+
+    @Column
+    private String content;
 
     @Column
     private Timestamp creationDate;
 
     @ManyToOne
-    private User owner;
+    private Blog blog;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog")
-    private List<Article> articles;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
+    private List<Comment> comments;
 }
