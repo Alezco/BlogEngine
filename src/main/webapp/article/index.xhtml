@@ -13,13 +13,12 @@
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
             <p:outputPanel>
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Id:" />
-                    <h:outputText value="#{item.id}" style="font-weight: bold"/>
                     <h:outputText value="Title:" />
                     <h:outputText value="#{item.title}" style="font-weight: bold"/>
                     <h:outputText value="Content:" />
                     <h:outputText value="#{item.content}" style="font-weight: bold"/>
-                    <p:commandButton action="${articleController.show(item)}" value="View details" />
+                    <p:commandButton action="${articleController.create(item)}" value="View" />
+                    <p:commandButton action="${articleController.edit(item)}" value="Edit" />
                     <br/><br/>
                 </h:panelGrid>
             </p:outputPanel>
