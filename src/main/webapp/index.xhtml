@@ -7,10 +7,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
+    <h1>Welcome to BlogEngine !</h1>
     <h:form id="baseForm">
-        <p:inputText placeholder="Email" binding="${email}"/><br/>
+        <!--<p:inputText placeholder="Email" binding="${email}"/><br/>-->
+        <a href="login.xhtml">Login</a>
+        <a href="register.xhtml">Register</a>
         <!--<p:commandButton action="${user.add(login.value, email.value)}" value="Create user"/><br/>-->
-
         <!--<p:link outcome="toto" value="Get all users" />-->
     </h:form>
 </f:view>
