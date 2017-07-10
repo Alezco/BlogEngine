@@ -2,7 +2,5 @@
 Blog realised with JEE
 
 #TODO
-- CSS
-- User rights handling
-- Delete comments
+- Hash passwords
 - Form errors
