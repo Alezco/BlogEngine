@@ -2,11 +2,14 @@ package dao;
 
 import models.User;
 
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 
-public class UserDAO {
+@SessionScoped
+public class UserDAO implements Serializable {
     @PersistenceContext(unitName = "BEPersistenceName")
     private EntityManager em;
 

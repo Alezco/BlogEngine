@@ -42,6 +42,7 @@ public class UserController implements Serializable {
 
     public void logout() throws IOException {
         setCurrentUser(null);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 
     public boolean isLogged() {
