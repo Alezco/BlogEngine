@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Blog;
+import models.User;
 import services.BlogService;
 import services.Services;
 
@@ -37,12 +38,12 @@ public class BlogController implements Serializable {
         return blogService.getActiveBlogs();
     }
 
-    public void add(String name) {
+    public void add(String name, User user) {
         Blog blog = new Blog();
         blog.setName(name);
         blog.setArchived(false);
         blog.setCreationDate(new Timestamp(System.currentTimeMillis()));
-        blog.setOwner(new UserController().getCurrentUser());
+        blog.setOwner(user);
 
         services.create(blog);
     }

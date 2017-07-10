@@ -13,12 +13,12 @@
     <h1>Welcome to BlogEngine !</h1>
     <br />
     <h:form rendered="${userController.isLogged()}">
-        <h:outputText value="Name"/><br />
-        <h:inputText id="name" binding="#{name}" />
-        <br />
-        <p:commandButton action="${blogController.add(name.value)}" value="Create new blog"/>
+        <p:inputText binding="${name}" placeholder="Title"/>
+        <br/><br/>
+        <p:commandButton action="${blogController.add(name.value, userController.getCurrentUser())}" value="Create new blog"/>
         <br />
     </h:form>
+    <br />
     <h:form>
         <p:dataScroller value="#{blogController.activeList()}" var="item" chunkSize="10">
             <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
