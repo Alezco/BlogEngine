@@ -10,11 +10,25 @@
 <f:view>
     <ui:include src="menu.xhtml"/>
     <h1>Welcome to BlogEngine !</h1>
-        <c:forEach items="${articleController.listArticles()}" var="item">
-            <h:outputLabel value="${item.title}"/>______<h:outputLabel value="${item.content}"/>
-            <br/>
-        </c:forEach>
-        <a href="login.xhtml">Login</a>
-        <a href="register.xhtml">Register</a>
+    <h:form>
+        <p:dataScroller value="#{articleController.listArticles()}" var="item" chunkSize="10">
+            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{item.id}" style="font-weight: bold"/>
+
+                        <h:outputText value="Title:" />
+                        <h:outputText value="#{item.title}" style="font-weight: bold"/>
+
+                        <h:outputText value="Content:" />
+                        <h:outputText value="#{item.content}" style="font-weight: bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataScroller>
+    </h:form>
+    <p:button outcome="login.xhtml" value="Login"/>
+    <p:button outcome="register.xhtml" value="Register"/>
 </f:view>
 </html>
