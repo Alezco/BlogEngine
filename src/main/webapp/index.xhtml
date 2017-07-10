@@ -14,9 +14,10 @@
         <a href="login.xhtml">Connexion</a>
     </h:form>
     <h:form rendered="${userController.isLogged()}">
-        <p:commandButton action="${userController.logout()}">Déconnexion</p:commandButton>
+        <p:commandButton action="${userController.logout()}" value="Déconnexion" />
     </h:form>
     <a href="register.xhtml">Inscription</a>
+    <br />
     <p:button outcome="create-article.xhtml" value="Create an article"/>
     <h:form>
         <p:dataScroller value="#{articleController.listArticles()}" var="item" chunkSize="10">
