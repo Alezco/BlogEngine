@@ -14,7 +14,7 @@ import java.io.IOError;
 @Named("user")
 public class UserController {
 
-    public void signUp(String email, String password) {
+    public void add(String email, String password) {
         System.out.println(email);
         System.out.println(password);
     }

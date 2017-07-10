@@ -18,13 +18,16 @@ public class User
     private String email;
 
     @Column
+    private String password;
+
+    @Column
     private String username;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Blog> blogs;
 
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Comment> comments;
 
