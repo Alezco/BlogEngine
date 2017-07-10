@@ -12,13 +12,11 @@
 <h1><p:outputLabel value="Login" /></h1>
 <f:view>
     <h:form>
-        <p:inputText binding="${email}" placeholder="Email">
-            <f:validateLength minimum="10" />
-        </p:inputText>
+        <p:inputText id="email" binding="${email}" placeholder="Email" required="true" requiredMessage="Please, fill with an email" />
+        <h:message for="email" style="color: red"/>
         <br/>
-        <p:password binding="${password}" placeholder="Password">
-            <f:validateLength minimum="6" />
-        </p:password>
+        <p:password id="password" binding="${password}" placeholder="Password" required="true" requiredMessage="Please, fill with a password" />
+        <h:message for="password" style="color: red"/>
         <br/><br/>
         <p:commandButton action="${userController.login(email.value, password.value)}" value="Connection"/>
         <p:button href="../index.xhtml" value="Back to index" />

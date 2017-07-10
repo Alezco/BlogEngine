@@ -12,20 +12,19 @@
 <h1><p:outputLabel value="Register" /></h1>
     <f:view>
         <h:form>
-            <p:inputText binding="${email}" placeholder="Email">
-                <f:validateLength minimum="10" />
+            <p:inputText id="email" binding="${email}" placeholder="Email" required="true" requiredMessage="Please, fill with an email">
+                <f:validateLength minimum="5"/>
             </p:inputText>
+            <p:message for="email"/>
             <br/>
-            <p:inputText binding="${username}" placeholder="Username">
-                <f:validateLength minimum="5" />
-            </p:inputText>
+            <p:inputText id="username" binding="${username}" placeholder="Username" required="true" requiredMessage="Please, fill with an username" />
+            <p:message for="username" style="color: red"/>
             <br/>
-            <p:password binding="${password}" placeholder="Password">
-                <f:validateLength minimum="6" />
-            </p:password>
+            <p:password id="password" binding="${password}" placeholder="Password" required="true" requiredMessage="Please, fill with a password" />
+            <p:message for="password" style="color: red"/>
             <br/><br/>
             <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Register"/>
-            <p:button href="../index.xhtml" value="Back to index" />
         </h:form>
+        <p:button href="../index.xhtml" value="Back to index" />
     </f:view>
 </html>

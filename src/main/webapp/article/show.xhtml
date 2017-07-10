@@ -33,9 +33,8 @@
     </p:dataScroller>
     <br/>
     <h:form rendered="${userController.isLogged()}">
-        <p:inputTextarea binding="${content}" placeholder="Write a comment ...">
-            <f:validateLength minimum="1" />
-        </p:inputTextarea>
+        <p:inputTextarea id="comment" binding="${content}" placeholder="Write a comment ..." required="true" requiredMessage="Please, fill wih a comment"/>
+        <h:message for="comment" style="color: red"/>
         <br/>
         <p:commandButton action="${commentController.create(content.value, userController.getCurrentUser(), articleController.getCurrentArticle())}" value="Send comment"/>
     </h:form>

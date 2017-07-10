@@ -12,9 +12,11 @@
 <h1><p:outputLabel value="Edit ${articleController.getCurrentArticle().title}" /></h1>
 <f:view>
     <h:form id="edit_article">
-        <p:inputText binding="${title}" placeholder="Title" value="${articleController.getCurrentArticle().title}"/>
+        <p:inputText id="title" binding="${title}" placeholder="Title" value="${articleController.getCurrentArticle().title}" required="true" requiredMessage="Please, fill with a title"/>
+        <h:message for="title" style="color: red"/>
         <br/><br/>
-        <p:inputTextarea binding="${content}" placeholder="Content" value="${articleController.getCurrentArticle().content}"/>
+        <p:inputTextarea id="content" binding="${content}" placeholder="Content" value="${articleController.getCurrentArticle().content}" required="true" requiredMessage="Please, fill with a content"/>
+        <h:message for="content" style="color: red"/>
         <br/><br/>
         <p:commandButton action="${articleController.updateArticle(title.value, content.value)}" value="Update article"/>
     </h:form>
