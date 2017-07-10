@@ -17,8 +17,9 @@
         <br/><br/>
         <p:commandButton action="${blogController.add(name.value, userController.getCurrentUser())}" value="Create new blog"/>
         <br />
+        <br />
     </h:form>
-    <br />
+
     <h:form>
         <p:dataScroller value="#{blogController.activeList()}" var="item" chunkSize="10">
             <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
