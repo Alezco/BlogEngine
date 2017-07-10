@@ -1,8 +1,8 @@
 package controllers;
 
-import dao.UserDAO;
 import models.User;
 import services.Services;
+import services.UserService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -18,10 +18,8 @@ import java.io.Serializable;
 @Named("userController")
 public class UserController implements Serializable {
 
-    private @Inject
-    Services services;
-    private @Inject
-    UserDAO userDAO;
+    private @Inject Services services;
+    private @Inject UserService userService;
 
     FacesContext context = FacesContext.getCurrentInstance();
     ExternalContext externalContext = context.getExternalContext();
@@ -35,7 +33,7 @@ public class UserController implements Serializable {
 
     public void login(String email, String password) throws ServletException, IOException {
 
-        User user = userDAO.getUserByEmail(email);
+        User user = userService.getUserByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;

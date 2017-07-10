@@ -2,12 +2,13 @@ package services;
 
 import dao.DAO;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-@ApplicationScoped
-public class Services {
+@SessionScoped
+public class Services implements Serializable {
     private @Inject DAO dao;
 
     public <T> ArrayList<T> getList(Class tClass) {

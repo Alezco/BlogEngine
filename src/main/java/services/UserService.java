@@ -3,10 +3,13 @@ package services;
 import dao.UserDAO;
 import models.User;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 
-public class UserService {
+@SessionScoped
+public class UserService implements Serializable {
     private @Inject
     UserDAO userDAO;
 
