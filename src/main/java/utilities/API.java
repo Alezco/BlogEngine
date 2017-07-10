@@ -1,6 +1,6 @@
 package utilities;
 
-import webservices.UserService;
+import webservices.BlogService;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -16,7 +16,7 @@ public class API extends Application {
 
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
-        resources.add(UserService.class);
+        resources.add(BlogService.class);
         resources.add(ResponseCorsFilter.class);
         return resources;
     }
