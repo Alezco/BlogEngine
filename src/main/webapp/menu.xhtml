@@ -7,17 +7,9 @@
 <h:form>
     <p:menubar>
         <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-        <p:menuitem value="Login" url="login.xhtml">
-            <h:form rendered="${!userController.isLogged()}">
-                <a href="login.xhtml">Login</a>
-            </h:form>
-        </p:menuitem>
-        <p:menuitem value="Logout" url="login.xhtml">
-            <h:form rendered="${userController.isLogged()}">
-                <p:commandButton action="${userController.logout()}" value="Logout" />
-            </h:form>
-        </p:menuitem>
-        <p:menuitem value="Register" url="register.xhtml" />
+        <p:menuitem value="Login" url="login.xhtml" rendered="${!userController.isLogged()}"/>
+        <p:menuitem value="Logout" action="${userController.logout()}" rendered="${userController.isLogged()}"/>
+        <p:menuitem value="Register" url="register.xhtml" rendered="${!userController.isLogged()}"/>
     </p:menubar>
 </h:form>
 </html>
