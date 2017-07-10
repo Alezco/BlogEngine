@@ -6,9 +6,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head/>
-
-<h1>Title</h1>
-<p>Creation date</p>
-<br/>
-<p>Content</p>
+<f:view>
+    <h1>${articleController.getCurrentArticle().title}</h1>
+    <p>${articleController.getCurrentArticle().creationDate}</p>
+    <br/>
+    <p>${articleController.getCurrentArticle().content}</p>
+</f:view>
 </html>
