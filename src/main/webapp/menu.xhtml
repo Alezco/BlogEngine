@@ -9,9 +9,9 @@
 <h:form>
     <p:menubar>
         <p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-        <p:menuitem value="Login" url="login.xhtml" rendered="${!userController.isLogged()}"/>
+        <p:menuitem value="Login" url="user/login.xhtml" rendered="${!userController.isLogged()}"/>
         <p:menuitem value="Logout" action="${userController.logout()}" rendered="${userController.isLogged()}"/>
-        <p:menuitem value="Register" url="register.xhtml" rendered="${!userController.isLogged()}"/>
+        <p:menuitem value="Register" url="user/register.xhtml" rendered="${!userController.isLogged()}"/>
     </p:menubar>
 </h:form>
 </html>

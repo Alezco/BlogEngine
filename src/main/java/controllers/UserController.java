@@ -5,10 +5,12 @@ import models.User;
 import services.Services;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -20,6 +22,10 @@ public class UserController implements Serializable {
     Services services;
     private @Inject
     UserDAO userDAO;
+
+    FacesContext context = FacesContext.getCurrentInstance();
+    ExternalContext externalContext = context.getExternalContext();
+    HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
     private User currentUser;
 
@@ -33,16 +39,15 @@ public class UserController implements Serializable {
 
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/index.xhtml");
         }
-        else {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-        }
+        else
+            FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/user/login.xhtml");
     }
 
     public void logout() throws IOException {
         setCurrentUser(null);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + "/index.xhtml");
     }
 
     public boolean isLogged() {
