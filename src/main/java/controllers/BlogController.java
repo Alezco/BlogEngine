@@ -1,7 +1,7 @@
 package controllers;
 
-import dao.BlogDAO;
 import models.Blog;
+import services.BlogService;
 import services.Services;
 
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @Named("blogController")
 public class BlogController implements Serializable {
     @Inject private Services services;
-    @Inject private BlogDAO blogDAO;
+    @Inject private BlogService blogService;
 
     private Blog current;
 
@@ -34,7 +34,7 @@ public class BlogController implements Serializable {
     }
 
     public ArrayList<Blog> activeList() {
-        return blogDAO.getActiveBlogs();
+        return blogService.getActiveBlogs();
     }
 
     public void add(String name) {
@@ -50,7 +50,7 @@ public class BlogController implements Serializable {
     public void show(Integer id) throws IOException {
         current = (Blog)services.getById(Blog.class, id);
 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("blog/show.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("article/index.xhtml");
     }
 
     public void archive(Integer id) throws IOException {

@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Article;
+import services.BlogService;
 import services.Services;
 
 import javax.enterprise.context.SessionScoped;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 public class ArticleController implements Serializable {
     @Inject
     private Services services;
+
+    @Inject
+    private BlogService blogService;
 
     private Article currentArticle;
 
@@ -52,8 +56,8 @@ public class ArticleController implements Serializable {
         services.update(currentArticle);
     }
 
-    public ArrayList<Article> listArticlesByBlogId() {
-        return services.getList(Article.class);
+    public ArrayList<Article> listActiveArticlesByBlogId(Integer id) {
+        return blogService.getActiveArticlesByBlogId(id);
     }
 
     public Article getCurrentArticle() {

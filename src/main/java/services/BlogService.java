@@ -4,11 +4,14 @@ import dao.BlogDAO;
 import models.Article;
 import models.Blog;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BlogService {
+@SessionScoped
+public class BlogService implements Serializable {
     private @Inject
     BlogDAO blogDAO;
 
