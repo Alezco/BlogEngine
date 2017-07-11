@@ -13,6 +13,9 @@
     <f:view>
         <h:form>
             <h:panelGrid id="grid">
+                <p:outputLabel rendered="${userController.isEmailUsed()}" value="Email already used" style="color: red" />
+                <p:outputLabel rendered="${userController.isUsernameUsed()}" value="Username already used" style="color: red" />
+                <br />
                 <p:inputText id="email" binding="${email}" placeholder="Email" required="true" requiredMessage="Please, fill with an email">
                     <f:validateLength minimum="5"/>
                 </p:inputText>
@@ -31,6 +34,6 @@
             </h:panelGrid>
             <p:commandButton action="${userController.register(email.value, username.value, password.value)}" value="Register" update="grid"/>
         </h:form>
-        <p:button href="../index.xhtml" value="Back to index" />
+        <p:button href="../index.xhtml" value="Back to index" onclick="${userController.setRegisterError(false)}"/>
     </f:view>
 </html>

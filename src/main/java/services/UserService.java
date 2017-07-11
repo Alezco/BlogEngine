@@ -17,4 +17,9 @@ public class UserService implements Serializable {
     public User getUserByEmail(String email) {
         return userDAO.getUserByEmail(email);
     }
+
+    @Transactional
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
+    }
 }

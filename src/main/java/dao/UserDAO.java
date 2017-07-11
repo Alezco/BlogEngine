@@ -24,4 +24,14 @@ public class UserDAO implements Serializable {
             return users.get(0);
         return null;
     }
+
+    @Transactional
+    public User getUserByUsername(String username) {
+        ArrayList<User> users = (ArrayList<User>) em.createQuery("SELECT u FROM User u WHERE u.username = :username")
+                .setParameter("username", username).getResultList();
+
+        if (!users.isEmpty())
+            return users.get(0);
+        return null;
+    }
 }

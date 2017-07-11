@@ -14,7 +14,7 @@
     <h:form>
         <h:panelGrid id="grid">
             <p:outputLabel rendered="${userController.isHasLoginError()}" value="Wrong email/password combinaison" style="color: red" />
-            <br /><br />
+            <br />
             <p:inputText id="email" binding="${email}" placeholder="Email" required="true" requiredMessage="Please, fill with an email" >
                 <f:validateLength minimum="5"/>
             </p:inputText>

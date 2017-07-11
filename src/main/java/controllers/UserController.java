@@ -30,11 +30,25 @@ public class UserController implements Serializable {
     private final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
     private User currentUser;
     private boolean hasLoginError = false;
-    private boolean hasRegisterError = false;
+    private boolean emailUsed = false;
+    private boolean usernameUsed = false;
 
     public void register(final String email, final String username, final String password) throws IOException {
-        services.create(new User(email, username, hashPassword(password)));
-        redirectTo("/user/login.xhtml");
+        User user = userService.getUserByEmail(email);
+        User user2 = userService.getUserByUsername(username);
+
+        if (user != null)
+            setEmailUsed(true);
+        if (user2 != null)
+            setUsernameUsed(true);
+        if (user == null && user2 == null) {
+            setEmailUsed(false);
+            setUsernameUsed(false);
+            services.create(new User(email, username, hashPassword(password)));
+            redirectTo("/user/login.xhtml");
+        }
+        else
+            redirectTo("/user/register.xhtml");
     }
 
     public void login(final String email, final String password) throws ServletException, IOException {
@@ -81,6 +95,11 @@ public class UserController implements Serializable {
         }
     }
 
+    public void setRegisterError(final boolean bool) {
+        setUsernameUsed(bool);
+        setEmailUsed(bool);
+    }
+
     public boolean isLogged() {
         return getCurrentUser() != null;
     }
@@ -101,11 +120,19 @@ public class UserController implements Serializable {
         this.hasLoginError = hasLoginError;
     }
 
-    public boolean isHasRegisterError() {
-        return hasRegisterError;
+    public boolean isEmailUsed() {
+        return emailUsed;
     }
 
-    public void setHasRegisterError(final boolean hasRegisterError) {
-        this.hasRegisterError = hasRegisterError;
+    public void setEmailUsed(final boolean emailUsed) {
+        this.emailUsed = emailUsed;
+    }
+
+    public boolean isUsernameUsed() {
+        return usernameUsed;
+    }
+
+    public void setUsernameUsed(final boolean usernameUsed) {
+        this.usernameUsed = usernameUsed;
     }
 }
