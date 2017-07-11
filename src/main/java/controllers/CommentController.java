@@ -36,7 +36,7 @@ public class CommentController implements Serializable {
 
     public void delete(Comment comment) throws IOException {
         commentDAO.deleteComment(comment);
-        redirectTo("index.xhtml");
+        redirectTo("show.xhtml");
     }
 
     private void redirectTo(String page) {

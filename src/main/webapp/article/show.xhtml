@@ -12,7 +12,10 @@
 <ui:include src="../menu.xhtml"/>
 <f:view>
     <h1><p:outputLabel value="${articleController.getCurrentArticle().title}" /></h1>
-    <p><p:outputLabel value="${articleController.getCurrentArticle().creationDate}" /></p>
+    <p>
+        <p:outputLabel value="Created the ${articleController.getCurrentArticle().creationDate} by " />
+        <strong><p:outputLabel value="${articleController.getCurrentArticle().blog.owner.username}" /></strong>
+    </p>
     <br/>
     <p><p:outputLabel value="${articleController.getCurrentArticle().content}" /></p>
     <p:dataScroller value="#{commentController.list(articleController.getCurrentArticle())}" var="item" chunkSize="10">
