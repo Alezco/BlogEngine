@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 @SessionScoped
 public class UserDAO implements Serializable {
@@ -15,7 +17,11 @@ public class UserDAO implements Serializable {
 
     @Transactional
     public User getUserByEmail(String email) {
-        return (User) em.createQuery("SELECT u FROM User u WHERE u.email = :email")
-                .setParameter("email", email).getResultList().get(0);
+        ArrayList<User> users = (ArrayList<User>) em.createQuery("SELECT u FROM User u WHERE u.email = :email")
+                .setParameter("email", email).getResultList();
+
+        if (!users.isEmpty())
+            return users.get(0);
+        return null;
     }
 }

@@ -13,6 +13,8 @@
 <f:view>
     <h:form>
         <h:panelGrid id="grid">
+            <p:outputLabel rendered="${userController.isHasLoginError()}" value="Wrong email/password combinaison" style="color: red" />
+            <br /><br />
             <p:inputText id="email" binding="${email}" placeholder="Email" required="true" requiredMessage="Please, fill with an email" >
                 <f:validateLength minimum="5"/>
             </p:inputText>
@@ -25,7 +27,7 @@
             <br/><br/>
         </h:panelGrid>
         <p:commandButton action="${userController.login(email.value, password.value)}" value="Connection" update="grid"/>
-        <p:button href="../index.xhtml" value="Back to index" />
+        <p:button href="../index.xhtml" value="Back to index" onclick="${userController.setHasLoginError(false)}" />
     </h:form>
 </f:view>
 </html>
