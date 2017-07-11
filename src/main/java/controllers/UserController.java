@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @SessionScoped
 @Named("userController")
@@ -25,13 +27,13 @@ public class UserController implements Serializable {
     private User currentUser;
 
     public void register(String email, String username, String password) throws IOException {
-        services.create(new User(email, username, password));
+        services.create(new User(email, username, hashPassword(password)));
         redirectTo("/user/login.xhtml");
     }
 
     public void login(String email, String password) throws ServletException {
         User user = userService.getUserByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(hashPassword(password))) {
             currentUser = user;
             redirectTo("/index.xhtml");
         }
@@ -50,6 +52,24 @@ public class UserController implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect(request.getContextPath() + page);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            return sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+            redirectTo("/index.xhtml");
+            return "";
         }
     }
 
