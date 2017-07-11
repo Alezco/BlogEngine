@@ -51,7 +51,7 @@ public class BlogController implements Serializable {
         redirectTo("index.xhtml");
     }
 
-    public void show(Integer id) {
+    public void show(final Integer id) {
         current = (Blog)services.getById(Blog.class, id);
         redirectTo("article/index.xhtml");
     }

@@ -10,6 +10,8 @@
 <h1><p:outputLabel value="Blog : ${blogController.getCurrent().name}" /></h1>
 <p:button outcome="create.xhtml" value="Create an article"
           rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
+<p:button href="restoration.xhtml" value="Restore archived articles" style="background-color: forestgreen"
+          rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
 <br/><br/>
 <h:form>
     <p:dataScroller value="#{articleController.listActiveArticlesByBlogId(blogController.getCurrent().id)}" var="item" chunkSize="10">
@@ -20,7 +22,7 @@
                     <h:outputText value="#{item.title}" style="font-weight: bold"/>
                     <h:outputText value="Content:" />
                     <h:outputText value="#{item.content}" style="font-weight: bold"/>
-                    <p:commandButton action="${articleController.create(item)}" value="View" />
+                    <p:commandButton action="${articleController.show(item)}" value="View" />
                     <p:commandButton action="${articleController.edit(item)}" value="Edit"
                                      rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
                     <p:commandButton action="${articleController.archive(item)}" value="Archive" style="background-color: indianred"

@@ -28,8 +28,12 @@ public class ArticleController implements Serializable {
         return services.getList(Article.class);
     }
   
-    public ArrayList<Article> listActiveArticlesByBlogId(Integer id) {
+    public ArrayList<Article> listActiveArticlesByBlogId(final Integer id) {
         return blogService.getActiveArticlesByBlogId(id);
+    }
+
+    public ArrayList<Article> listInactiveArticlesByBlogId(final Integer id) {
+        return blogService.getInactiveArticlesByBlogId(id);
     }
 
     public void addArticle(String title, String content, Blog blog) {
@@ -46,7 +50,7 @@ public class ArticleController implements Serializable {
         redirectTo("index.xhtml");
     }
 
-    public void create(Article article) {
+    public void show(Article article) {
         this.currentArticle = article;
         redirectTo("show.xhtml");
     }
@@ -60,6 +64,12 @@ public class ArticleController implements Serializable {
         article.setArchived(true);
         services.update(article);
         redirectTo("index.xhtml");
+    }
+
+    public void restore(Article article) throws IOException {
+        article.setArchived(false);
+        services.update(article);
+        redirectTo("restoration.xhtml");
     }
 
     public int getAuthorId(Article article) {

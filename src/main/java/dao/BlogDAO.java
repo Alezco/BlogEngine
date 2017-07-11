@@ -16,15 +16,22 @@ public class BlogDAO implements Serializable {
     private EntityManager em;
 
     @Transactional
-    public ArrayList<Article> getArticlesByBlogId(int id) {
+    public ArrayList<Article> getArticlesByBlogId(final int id) {
         return (ArrayList<Article>) em.createQuery("SELECT a FROM Article a WHERE a.blog.id = :id")
                 .setParameter("id", id)
                 .getResultList();
     }
 
     @Transactional
-    public ArrayList<Article> getActiveArticlesByBlogId(int id) {
+    public ArrayList<Article> getActiveArticlesByBlogId(final int id) {
         return (ArrayList<Article>) em.createQuery("SELECT a FROM Article a WHERE a.blog.id = :id AND a.archived = false")
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    @Transactional
+    public ArrayList<Article> getInactiveArticlesByBlogId(final int id) {
+        return (ArrayList<Article>) em.createQuery("SELECT a FROM Article a WHERE a.blog.id = :id AND a.archived = true")
                 .setParameter("id", id)
                 .getResultList();
     }

@@ -16,13 +16,18 @@ public class BlogService implements Serializable {
     BlogDAO blogDAO;
 
     @Transactional
-    public ArrayList<Article> getArticlesByBlogId(int id) {
+    public ArrayList<Article> getArticlesByBlogId(final int id) {
         return blogDAO.getArticlesByBlogId(id);
     }
 
     @Transactional
-    public ArrayList<Article> getActiveArticlesByBlogId(int id) {
+    public ArrayList<Article> getActiveArticlesByBlogId(final int id) {
         return blogDAO.getActiveArticlesByBlogId(id);
+    }
+
+    @Transactional
+    public ArrayList<Article> getInactiveArticlesByBlogId(final int id) {
+        return blogDAO.getInactiveArticlesByBlogId(id);
     }
 
     @Transactional
