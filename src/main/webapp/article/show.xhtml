@@ -41,8 +41,7 @@
             <br/>
         </h:panelGrid>
         <p:commandButton action="${commentController.create(content.value, userController.getCurrentUser(), articleController.getCurrentArticle())}" value="Send comment" update="grid"/>
+        <p:button href="index.xhtml" value="Back to articles"/>
     </h:form>
-    <br/>
-    <p:button href="../index.xhtml" value="Back to articles"/>
 </f:view>
 </html>

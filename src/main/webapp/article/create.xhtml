@@ -17,16 +17,15 @@
                 <f:validateLength minimum="5"/>
             </p:inputText>
             <p:message for="title"/>
-            <br/><br/>
+            <br/>
             <p:inputTextarea id="content" binding="${content}" placeholder="Content" required="true" requiredMessage="Please, fill with a content">
                 <f:validateLength minimum="5"/>
             </p:inputTextarea>
             <p:message for="content"/>
-            <br/><br/>
+            <br/>
         </h:panelGrid>
         <p:commandButton action="${articleController.addArticle(title.value, content.value, blogController.getCurrent())}" value="Create article" update="grid"/>
+        <p:button href="index.xhtml" value="Back to articles"/>
     </h:form>
 </f:view>
-<br/>
-<p:button href="../index.xhtml" value="Back to index"/>
 </html>

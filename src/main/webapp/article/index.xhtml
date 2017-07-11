@@ -23,7 +23,7 @@
                     <p:commandButton action="${articleController.create(item)}" value="View" />
                     <p:commandButton action="${articleController.edit(item)}" value="Edit"
                                      rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
-                    <p:commandButton action="${articleController.archive(item)}" value="Archive"
+                    <p:commandButton action="${articleController.archive(item)}" value="Archive" style="background-color: indianred"
                                      rendered="${userController.getCurrentUser().id == blogController.getCurrent().owner.id}"/>
                 </h:panelGrid>
             </p:outputPanel>

@@ -34,4 +34,10 @@ public class BlogDAO implements Serializable {
         return (ArrayList<Blog>) em.createQuery("SELECT b FROM Blog b WHERE b.archived = false")
                 .getResultList();
     }
+
+    @Transactional
+    public ArrayList<Blog> getInactiveBlogs() {
+        return (ArrayList<Blog>) em.createQuery("SELECT b FROM Blog b WHERE b.archived = true")
+                .getResultList();
+    }
 }

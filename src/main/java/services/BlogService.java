@@ -29,4 +29,9 @@ public class BlogService implements Serializable {
     public ArrayList<Blog> getActiveBlogs() {
         return blogDAO.getActiveBlogs();
     }
+
+    @Transactional
+    public ArrayList<Blog> getInactiveBlogs() {
+        return blogDAO.getInactiveBlogs();
+    }
 }

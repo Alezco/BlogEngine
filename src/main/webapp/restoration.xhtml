@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head/>
+
+<f:view>
+    <ui:include src="menu.xhtml"/>
+    <h1><p:outputLabel value="Restore your blogs there" /></h1>
+    <br />
+    <h:form>
+        <p:dataScroller value="#{blogController.inactiveList()}" var="item" chunkSize="10">
+            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Name:" />
+                        <h:outputText value="#{item.name}" style="font-weight: bold"/>
+                        <p:commandButton action="${blogController.restore(item)}" value="Restore" style="background-color: forestgreen"
+                                         rendered="${userController.getCurrentUser().id == item.owner.id}"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataScroller>
+    </h:form>
+</f:view>
+</html>

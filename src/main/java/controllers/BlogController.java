@@ -37,6 +37,10 @@ public class BlogController implements Serializable {
         return blogService.getActiveBlogs();
     }
 
+    public ArrayList<Blog> inactiveList() {
+        return blogService.getInactiveBlogs();
+    }
+
     public void add(String name, User user) {
         Blog blog = new Blog();
         blog.setName(name);
@@ -56,6 +60,12 @@ public class BlogController implements Serializable {
         blog.setArchived(true);
         services.update(blog);
         redirectTo("index.xhtml");
+    }
+
+    public void restore(Blog blog) {
+        blog.setArchived(false);
+        services.update(blog);
+        redirectTo("restoration.xhtml");
     }
 
     private void redirectTo(String page) {
